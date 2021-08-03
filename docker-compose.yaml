@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+    streaming-service:
+        build:
+            context: ./streaming-server
+            dockerfile: Dockerfile
+        volumes:
+            - ./streaming-server/nginx/conf:/usr/local/nginx/conf
+            - ./streaming-server/video-files:/var/mp4s
+        ports:
+            - "80:80"
+            - "8080:8080"
+            - "443:443"
+            - "1935:1935"
+
