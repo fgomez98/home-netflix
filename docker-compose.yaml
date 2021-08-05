@@ -13,4 +13,15 @@ services:
             - "8080:8080"
             - "443:443"
             - "1935:1935"
+    api-rest-service:
+        build:
+            context: ./home-netflix-api
+            dockerfile: Dockerfile
+        volumes:
+            - ./streaming-server/video-files:/var/mp4s
+        ports:
+            - "9090:8080"
+        environment:
+            - HOME_NETFLIX_API_ENV=prod
+            - HOST_IP=192.168.0.13
 
