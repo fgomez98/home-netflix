@@ -8,26 +8,38 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.leanback.app.BackgroundManager
 import androidx.leanback.app.BrowseSupportFragment
+import androidx.leanback.widget.ArrayObjectAdapter
+import androidx.leanback.widget.HeaderItem
+import androidx.leanback.widget.ListRow
+import androidx.leanback.widget.ListRowPresenter
 import com.ar.homenetflixtv.R
+import com.ar.homenetflixtv.landing.card.VideoCardPresenter
+import com.ar.homenetflixtv.model.Categories
+import com.ar.homenetflixtv.model.Video
+
 
 class LandingFragment : BrowseSupportFragment() {
+
+
+    private val NUM_ROWS = 4
+    private lateinit var mAdapter: ArrayObjectAdapter
 
     private lateinit var mBackgroundManager: BackgroundManager
     private var mDefaultBackground: Drawable? = null
     private lateinit var mMetrics: DisplayMetrics
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        title = getString(R.string.browse_title)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         prepareBackgroundManager()
         setupUIElements()
-//        loadRows()
         setupEventListeners()
-    }
-
-    private fun loadRows() {
-        TODO("Not yet implemented")
+        buildRowsAdapter()
     }
 
     private fun setupUIElements() {
@@ -35,17 +47,13 @@ class LandingFragment : BrowseSupportFragment() {
 //        badgeDrawable = resources.getDrawable(R.drawable.app_icon_your_company)
         title = getString(R.string.browse_title)
 
-        // Headers
+        // Headers, we do not need them for now
         headersState = BrowseSupportFragment.HEADERS_ENABLED
         isHeadersTransitionOnBackEnabled = true
         brandColor = ContextCompat.getColor(requireContext(), R.color.fastlane_background)
-
-        // set search icon color
-        searchAffordanceColor = ContextCompat.getColor(requireContext(), R.color.search_opaque)
     }
 
     private fun prepareBackgroundManager() {
-
         mBackgroundManager = BackgroundManager.getInstance(activity)
         mBackgroundManager.attach(requireActivity().window)
         mDefaultBackground = ContextCompat
@@ -66,5 +74,18 @@ class LandingFragment : BrowseSupportFragment() {
         }
     }
 
+    private fun buildRowsAdapter() {
+        val rowsAdapter = ArrayObjectAdapter(ListRowPresenter())
+        for (cat in Categories.values()) {
+            val categoryListRowAdapter = ArrayObjectAdapter(VideoCardPresenter()).apply {
+                Video.videos.forEach { v -> add(v) }
+            }
+            HeaderItem(cat.getValue()).also { header ->
+                rowsAdapter.add(ListRow(header, categoryListRowAdapter))
+            }
+        }
+        mAdapter = rowsAdapter
+        adapter = mAdapter
+    }
 
 }
