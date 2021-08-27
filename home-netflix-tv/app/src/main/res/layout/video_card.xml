@@ -1,22 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    tools:parentTag="androidx.leanback.widget.BaseCardView">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:lb="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    lb:cardBackground="@null"
+    lb:layout_viewType="main">
 
-    <ImageView
-        android:id="@+id/video_preview_image"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/movie"
-        tools:ignore="ContentDescription" />
+        android:padding="8dp"
+        android:background="@drawable/video_card_bg"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/video_title"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Hello" />
 
-</merge>
+        <ImageView
+            android:id="@+id/video_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/fer" />
+
+        <TextView
+            android:id="@+id/video_title"
+            style="@style/Widget.Leanback.ImageCardView.TitleStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:fontFamily="sans-serif-condensed"
+            android:gravity="center"
+            android:text="Hello Fer" />
+
+    </LinearLayout>
+</FrameLayout>

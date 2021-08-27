@@ -1,5 +1,6 @@
 package com.ar.homenetflixtv.landing.ui
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -16,13 +17,14 @@ import com.ar.homenetflixtv.R
 import com.ar.homenetflixtv.landing.card.VideoCardPresenter
 import com.ar.homenetflixtv.model.Categories
 import com.ar.homenetflixtv.model.Video
+import com.ar.homenetflixtv.playback.PlaybackActivity
 
 
-class LandingFragment : BrowseSupportFragment() {
-
+class LandingFragment : BrowseSupportFragment(), LandingView {
 
     private val NUM_ROWS = 4
     private lateinit var mAdapter: ArrayObjectAdapter
+    private lateinit var presenter: LandingPresenter
 
     private lateinit var mBackgroundManager: BackgroundManager
     private var mDefaultBackground: Drawable? = null
@@ -36,10 +38,22 @@ class LandingFragment : BrowseSupportFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        createPresenter()
+
         prepareBackgroundManager()
         setupUIElements()
         setupEventListeners()
-        buildRowsAdapter()
+
+        presenter.onViewAttached()
+    }
+
+    private fun createPresenter() {
+        presenter = LandingPresenter(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.onViewDetached()
     }
 
     private fun setupUIElements() {
@@ -67,18 +81,21 @@ class LandingFragment : BrowseSupportFragment() {
             Toast.makeText(requireActivity(), "Search Activity", Toast.LENGTH_LONG).show()
         }
         setOnItemViewClickedListener { itemViewHolder, item, rowViewHolder, row ->
-            Toast.makeText(requireActivity(), "Item View Clicked", Toast.LENGTH_LONG).show()
+            startActivity(Intent(requireContext(), PlaybackActivity::class.java))
+            /*Toast.makeText(requireActivity(), "Item View Clicked", Toast.LENGTH_LONG).show()*/
         }
         setOnItemViewSelectedListener { itemViewHolder, item, rowViewHolder, row ->
-            Toast.makeText(requireActivity(), "Item View Selected", Toast.LENGTH_LONG).show()
+            /*Toast.makeText(requireActivity(), "Item View Selected", Toast.LENGTH_LONG).show()*/
         }
     }
 
-    private fun buildRowsAdapter() {
-        val rowsAdapter = ArrayObjectAdapter(ListRowPresenter())
+    override fun showVideos(videos: List<Video>) {
+        val rowsAdapter = ArrayObjectAdapter(ListRowPresenter().apply {
+            shadowEnabled = false
+        })
         for (cat in Categories.values()) {
             val categoryListRowAdapter = ArrayObjectAdapter(VideoCardPresenter()).apply {
-                Video.videos.forEach { v -> add(v) }
+                videos.forEach { v -> add(v) }
             }
             HeaderItem(cat.getValue()).also { header ->
                 rowsAdapter.add(ListRow(header, categoryListRowAdapter))
