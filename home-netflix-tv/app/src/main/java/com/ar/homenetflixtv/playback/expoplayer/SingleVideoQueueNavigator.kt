@@ -25,7 +25,7 @@ class SingleVideoQueueNavigator(video: Video, mediaSession: MediaSessionCompat) 
     @VisibleForTesting
     fun getMediaDescription(video: Video): MediaDescriptionCompat {
         return MediaDescriptionCompat.Builder()
-            .setTitle(video.getTitle())
+            .setTitle(video.title)
             .build()
     }
 }

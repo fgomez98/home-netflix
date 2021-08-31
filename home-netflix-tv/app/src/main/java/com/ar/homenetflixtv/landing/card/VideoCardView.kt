@@ -1,15 +1,16 @@
 package com.ar.homenetflixtv.landing.card
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.leanback.widget.BaseCardView
-import androidx.leanback.widget.ImageCardView
 import com.ar.homenetflixtv.R
 import com.ar.homenetflixtv.model.Video
+import com.bumptech.glide.Glide
 
 class VideoCardView : BaseCardView {
 
@@ -40,15 +41,19 @@ class VideoCardView : BaseCardView {
         setupUIElements()
     }
 
-
     private fun setupUIElements() {
         image = findViewById(R.id.video_image)
         title = findViewById(R.id.video_title)
     }
 
     fun bind(video: Video) {
-        title.text = video.getTitle()
-        image.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.fer))
+        title.text = video.title
 
+        Glide
+            .with(context)
+            .load(video.imageUrl)
+            .placeholder(ColorDrawable(Color.BLACK))
+            .centerCrop()
+            .into(image)
     }
 }

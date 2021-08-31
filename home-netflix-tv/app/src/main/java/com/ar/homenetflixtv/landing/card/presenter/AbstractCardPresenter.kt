@@ -1,4 +1,4 @@
-package com.ar.homenetflixtv.landing.card
+package com.ar.homenetflixtv.landing.card.presenter
 
 import android.content.Context
 import android.view.ViewGroup

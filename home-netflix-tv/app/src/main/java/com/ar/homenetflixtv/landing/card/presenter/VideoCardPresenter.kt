@@ -1,6 +1,7 @@
-package com.ar.homenetflixtv.landing.card
+package com.ar.homenetflixtv.landing.card.presenter
 
 import android.content.Context
+import com.ar.homenetflixtv.landing.card.VideoCardView
 import com.ar.homenetflixtv.model.Video
 
 class VideoCardPresenter : AbstractCardPresenter<VideoCardView, Video>() {

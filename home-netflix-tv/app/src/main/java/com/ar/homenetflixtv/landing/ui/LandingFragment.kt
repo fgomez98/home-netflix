@@ -14,11 +14,10 @@ import androidx.leanback.widget.HeaderItem
 import androidx.leanback.widget.ListRow
 import androidx.leanback.widget.ListRowPresenter
 import com.ar.homenetflixtv.R
-import com.ar.homenetflixtv.landing.card.VideoCardPresenter
+import com.ar.homenetflixtv.landing.card.presenter.VideoCardPresenter
 import com.ar.homenetflixtv.model.Categories
 import com.ar.homenetflixtv.model.Video
 import com.ar.homenetflixtv.playback.PlaybackActivity
-
 
 class LandingFragment : BrowseSupportFragment(), LandingView {
 
@@ -82,7 +81,6 @@ class LandingFragment : BrowseSupportFragment(), LandingView {
         }
         setOnItemViewClickedListener { itemViewHolder, item, rowViewHolder, row ->
             startActivity(Intent(requireContext(), PlaybackActivity::class.java))
-            /*Toast.makeText(requireActivity(), "Item View Clicked", Toast.LENGTH_LONG).show()*/
         }
         setOnItemViewSelectedListener { itemViewHolder, item, rowViewHolder, row ->
             /*Toast.makeText(requireActivity(), "Item View Selected", Toast.LENGTH_LONG).show()*/

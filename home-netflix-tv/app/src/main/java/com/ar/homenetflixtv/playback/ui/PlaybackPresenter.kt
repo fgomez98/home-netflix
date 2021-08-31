@@ -14,8 +14,9 @@ class PlaybackPresenter(view: PlaybackView) : VideoPlaybackStateListener {
     // fixme: hardcoded just for testing
     private val video = Video(
         "Test",
-        "rtmp://192.168.5.10:1935/vod2/bbb.mp4"
+        "rtmp://192.168.5.10:1935/vod2/bbb.mp4",
 //        "https://storage.googleapis.com/atv-reference-app-videos/clips-supercharged/supercharged-jquery-and-closest.mp4"
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Big_buck_bunny_poster_big.jpg/1024px-Big_buck_bunny_poster_big.jpg"
     )
     private val stateMachineVideo: VideoPlaybackStateMachine = VideoPlaybackStateMachineImpl()
     private val view: WeakReference<PlaybackView> = WeakReference(view)

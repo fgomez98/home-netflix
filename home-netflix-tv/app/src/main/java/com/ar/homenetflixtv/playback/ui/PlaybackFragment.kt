@@ -108,7 +108,7 @@ class PlaybackFragment : VideoSupportFragment(), PlaybackView {
 
         val mediaSource = ProgressiveMediaSource
             .Factory(rtmpDataSourceFactory)
-            .createMediaSource(MediaItem.fromUri(video.getUri()))
+            .createMediaSource(MediaItem.fromUri(video.uri))
 
         exoplayer = SimpleExoPlayer.Builder(requireContext())
             .setTrackSelector(trackSelector)
@@ -145,7 +145,7 @@ class PlaybackFragment : VideoSupportFragment(), PlaybackView {
             onProgressUpdate
         ).apply {
             host = VideoSupportFragmentGlueHost(this@PlaybackFragment)
-            title = video.getTitle()
+            title = video.title
             // Enable seek manually since PlaybackTransportControlGlue.getSeekProvider() is null,
             // so that PlayerAdapter.seekTo(long) will be called during user seeking.
             // TODO(gargsahil@): Add a PlaybackSeekDataProvider to support video scrubbing.
