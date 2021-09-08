@@ -1,10 +1,12 @@
 package com.ar.homenetflixtv.model
 
+import java.io.Serializable
+
 data class Video(
     val title: String,
     val uri: String,
     val imageUrl: String
-) {
+) : Serializable {
 
     companion object {
         val videos = listOf(

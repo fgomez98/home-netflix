@@ -37,7 +37,19 @@
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".playback.PlaybackActivity" />
+        <activity android:name=".playback.PlaybackActivity"
+            android:parentActivityName=".landing.LandingActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
+
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+
+<!--                <data-->
+<!--                    android:host="playback"-->
+<!--                    android:scheme="homenetflixtv" />-->
+<!--            </intent-filter>-->
+        </activity>
         <activity android:name=".DetailsActivity" />
         <activity android:name=".PlaybackActivity" />
         <activity android:name=".BrowseErrorActivity" />

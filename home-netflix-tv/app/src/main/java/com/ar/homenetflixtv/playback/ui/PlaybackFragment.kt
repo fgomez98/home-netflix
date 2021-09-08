@@ -1,29 +1,21 @@
 package com.ar.homenetflixtv.playback.ui
 
+//import com.google.android.exoplayer2.ext.rtmp.RtmpDataSourceFactory
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.media.session.MediaSessionCompat
 import android.view.View
 import androidx.leanback.app.VideoSupportFragment
 import androidx.leanback.app.VideoSupportFragmentGlueHost
-import com.ar.homenetflixtv.R
 import com.ar.homenetflixtv.model.Video
 import com.ar.homenetflixtv.playback.expoplayer.ProgressTransportControlGlue
 import com.ar.homenetflixtv.playback.expoplayer.SingleVideoQueueNavigator
 import com.google.android.exoplayer2.*
-import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.ext.leanback.LeanbackPlayerAdapter
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
 import com.google.android.exoplayer2.ext.rtmp.RtmpDataSourceFactory
-//import com.google.android.exoplayer2.ext.rtmp.RtmpDataSourceFactory
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
-import com.google.android.exoplayer2.trackselection.TrackSelection
-import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
-import com.google.android.exoplayer2.util.MimeTypes
-import com.google.android.exoplayer2.util.Util
 import java.time.Duration
 
 class PlaybackFragment : VideoSupportFragment(), PlaybackView {
@@ -47,7 +39,8 @@ class PlaybackFragment : VideoSupportFragment(), PlaybackView {
     }
 
     private fun createPresenter() {
-        presenter = PlaybackPresenter(this)
+        val video = requireActivity().intent.getSerializableExtra("video") as Video
+        presenter = PlaybackPresenter(video, this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -119,7 +112,7 @@ class PlaybackFragment : VideoSupportFragment(), PlaybackView {
                 prepareGlue(video, this)
                 mediaSessionConnector.setPlayer(this)
                 mediaSession.isActive = true
-        }
+            }
 
     }
 
@@ -134,6 +127,10 @@ class PlaybackFragment : VideoSupportFragment(), PlaybackView {
         }
     }
 
+    /*
+        The code that glues your app together should be inside the PlaybackSupportFragment or
+        VideoSupportFragment that defines the UI.
+     */
     private fun prepareGlue(video: Video, localExoplayer: ExoPlayer) {
         ProgressTransportControlGlue(
             requireContext(),
@@ -185,7 +182,7 @@ class PlaybackFragment : VideoSupportFragment(), PlaybackView {
         //  episodic content.
     }
 
-    inner class PlayerEventListener : Player.EventListener {
+    inner class PlayerEventListener : Player.Listener {
 
         override fun onPlayerError(error: ExoPlaybackException) {
             presenter.onPlayerError(error)

@@ -80,7 +80,11 @@ class LandingFragment : BrowseSupportFragment(), LandingView {
             Toast.makeText(requireActivity(), "Search Activity", Toast.LENGTH_LONG).show()
         }
         setOnItemViewClickedListener { itemViewHolder, item, rowViewHolder, row ->
-            startActivity(Intent(requireContext(), PlaybackActivity::class.java))
+            if (item is Video) {
+                val intent = Intent(requireContext(), PlaybackActivity::class.java)
+                intent.putExtra("video", item)
+                startActivity(intent)
+            }
         }
         setOnItemViewSelectedListener { itemViewHolder, item, rowViewHolder, row ->
             /*Toast.makeText(requireActivity(), "Item View Selected", Toast.LENGTH_LONG).show()*/
