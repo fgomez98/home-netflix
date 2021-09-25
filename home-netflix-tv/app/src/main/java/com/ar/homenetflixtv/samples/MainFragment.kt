@@ -1,4 +1,4 @@
-package com.ar.homenetflixtv
+package com.ar.homenetflixtv.samples
 
 import java.util.Collections
 import java.util.Timer
@@ -29,6 +29,7 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import com.ar.homenetflixtv.R
 
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget
@@ -69,7 +70,9 @@ class MainFragment : BrowseSupportFragment() {
 
         mBackgroundManager = BackgroundManager.getInstance(activity)
         mBackgroundManager.attach(requireActivity().window)
-        mDefaultBackground = ContextCompat.getDrawable(requireActivity(), R.drawable.default_background)
+        mDefaultBackground = ContextCompat.getDrawable(requireActivity(),
+            R.drawable.default_background
+        )
         mMetrics = DisplayMetrics()
         requireActivity().windowManager.defaultDisplay.getMetrics(mMetrics)
     }

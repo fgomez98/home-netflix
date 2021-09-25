@@ -1,9 +1,10 @@
-package com.ar.homenetflixtv
+package com.ar.homenetflixtv.samples
 
 import android.os.Bundle
 import android.view.View
 
 import androidx.core.content.ContextCompat
+import com.ar.homenetflixtv.R
 
 /**
  * This class demonstrates how to extend [androidx.leanback.app.ErrorSupportFragment].

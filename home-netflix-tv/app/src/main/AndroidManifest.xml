@@ -50,9 +50,9 @@
 <!--                    android:scheme="homenetflixtv" />-->
 <!--            </intent-filter>-->
         </activity>
-        <activity android:name=".DetailsActivity" />
-        <activity android:name=".PlaybackActivity" />
-        <activity android:name=".BrowseErrorActivity" />
+        <activity android:name=".samples.DetailsActivity" />
+        <activity android:name=".samples.PlaybackActivity" />
+        <activity android:name=".samples.BrowseErrorActivity" />
     </application>
 
 </manifest>

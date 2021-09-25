@@ -1,4 +1,4 @@
-package com.ar.homenetflixtv
+package com.ar.homenetflixtv.samples
 
 import android.content.Context
 import android.content.Intent
@@ -26,6 +26,7 @@ import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import android.util.Log
 import android.widget.Toast
+import com.ar.homenetflixtv.R
 
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.SimpleTarget

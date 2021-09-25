@@ -1,7 +1,8 @@
-package com.ar.homenetflixtv
+package com.ar.homenetflixtv.samples
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
+import com.ar.homenetflixtv.R
 
 /**
  * Details activity class that loads [VideoDetailsFragment] class.

@@ -1,4 +1,4 @@
-package com.ar.homenetflixtv
+package com.ar.homenetflixtv.samples
 
 import androidx.leanback.widget.AbstractDetailsDescriptionPresenter
 

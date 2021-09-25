@@ -1,4 +1,4 @@
-package com.ar.homenetflixtv
+package com.ar.homenetflixtv.samples
 
 import android.os.Bundle
 import android.os.Handler
@@ -10,6 +10,7 @@ import android.widget.FrameLayout
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
+import com.ar.homenetflixtv.R
 
 /**
  * BrowseErrorActivity shows how to use ErrorFragment.

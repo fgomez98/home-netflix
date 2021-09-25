@@ -1,4 +1,4 @@
-package com.ar.homenetflixtv
+package com.ar.homenetflixtv.samples
 
 import android.net.Uri
 import android.os.Bundle

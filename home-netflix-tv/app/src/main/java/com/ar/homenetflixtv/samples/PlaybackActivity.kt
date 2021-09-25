@@ -1,4 +1,4 @@
-package com.ar.homenetflixtv
+package com.ar.homenetflixtv.samples
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
