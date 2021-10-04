@@ -14,6 +14,7 @@
     <string name="movie">Movie</string>
 
     <!-- Error messages -->
+    <string name="show_video_error">Unable to show videos right now, try again later</string>
     <string name="error_fragment_message">An error occurred</string>
     <string name="dismiss_error">Dismiss</string>
 </resources>

@@ -18,6 +18,8 @@ import com.ar.homenetflixtv.landing.card.presenter.VideoCardPresenter
 import com.ar.homenetflixtv.model.Categories
 import com.ar.homenetflixtv.model.Video
 import com.ar.homenetflixtv.playback.PlaybackActivity
+import com.ar.homenetflixtv.repositories.video.RestVideoRepository
+import com.ar.homenetflixtv.utils.providers.AndroidSchedulerProvider
 
 class LandingFragment : BrowseSupportFragment(), LandingView {
 
@@ -47,7 +49,9 @@ class LandingFragment : BrowseSupportFragment(), LandingView {
     }
 
     private fun createPresenter() {
-        presenter = LandingPresenter(this)
+        val videoRepository = RestVideoRepository()
+        val schedulerProvider = AndroidSchedulerProvider()
+        presenter = LandingPresenter(videoRepository, schedulerProvider, this)
     }
 
     override fun onDestroy() {
@@ -107,4 +111,7 @@ class LandingFragment : BrowseSupportFragment(), LandingView {
         adapter = mAdapter
     }
 
+    override fun showVideosError() {
+        Toast.makeText(context, R.string.show_video_error, Toast.LENGTH_LONG).show()
+    }
 }

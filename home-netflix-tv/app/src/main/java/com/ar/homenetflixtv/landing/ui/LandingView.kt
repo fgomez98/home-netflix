@@ -5,4 +5,6 @@ import com.ar.homenetflixtv.model.Video
 interface LandingView {
 
     fun showVideos(videos: List<Video>)
+
+    fun showVideosError()
 }
