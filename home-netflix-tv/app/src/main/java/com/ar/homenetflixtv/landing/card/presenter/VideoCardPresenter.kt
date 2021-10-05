@@ -8,7 +8,12 @@ class VideoCardPresenter : AbstractCardPresenter<VideoCardView, Video>() {
 
     override fun onCreateView(context: Context): VideoCardView {
         val appContext = context.applicationContext
-        val videoCardView = VideoCardView(appContext)
+        /*
+            todo:
+                analizar diferencia entre pasar app context vs activity context que es lo que
+                nos llegaria en este caso
+         */
+        val videoCardView = VideoCardView(context)
         videoCardView.isFocusable = true
         videoCardView.isFocusableInTouchMode = true
         return videoCardView

@@ -14,14 +14,27 @@ import androidx.leanback.widget.HeaderItem
 import androidx.leanback.widget.ListRow
 import androidx.leanback.widget.ListRowPresenter
 import com.ar.homenetflixtv.R
+import com.ar.homenetflixtv.di.AndroidScheduler
+import com.ar.homenetflixtv.di.HomeNetflixVideoRepository
 import com.ar.homenetflixtv.landing.card.presenter.VideoCardPresenter
 import com.ar.homenetflixtv.model.Categories
 import com.ar.homenetflixtv.model.Video
 import com.ar.homenetflixtv.playback.PlaybackActivity
-import com.ar.homenetflixtv.repositories.video.RestVideoRepository
-import com.ar.homenetflixtv.utils.providers.AndroidSchedulerProvider
+import com.ar.homenetflixtv.repositories.video.VideoRepository
+import com.ar.homenetflixtv.utils.providers.SchedulerProvider
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class LandingFragment : BrowseSupportFragment(), LandingView {
+
+    @HomeNetflixVideoRepository
+    @Inject
+    lateinit var videoRepository: VideoRepository
+
+    @AndroidScheduler
+    @Inject
+    lateinit var schedulerProvider: SchedulerProvider
 
     private val NUM_ROWS = 4
     private lateinit var mAdapter: ArrayObjectAdapter
@@ -49,8 +62,6 @@ class LandingFragment : BrowseSupportFragment(), LandingView {
     }
 
     private fun createPresenter() {
-        val videoRepository = RestVideoRepository()
-        val schedulerProvider = AndroidSchedulerProvider()
         presenter = LandingPresenter(videoRepository, schedulerProvider, this)
     }
 

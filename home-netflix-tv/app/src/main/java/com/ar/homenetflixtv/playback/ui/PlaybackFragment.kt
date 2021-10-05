@@ -16,8 +16,10 @@ import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
 import com.google.android.exoplayer2.ext.rtmp.RtmpDataSourceFactory
 import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
+import dagger.hilt.android.AndroidEntryPoint
 import java.time.Duration
 
+@AndroidEntryPoint
 class PlaybackFragment : VideoSupportFragment(), PlaybackView {
 //https://www.youtube.com/watch?v=svdq1BWl4r8
 

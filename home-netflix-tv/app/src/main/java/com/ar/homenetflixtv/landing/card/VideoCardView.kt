@@ -9,14 +9,24 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.leanback.widget.BaseCardView
 import com.ar.homenetflixtv.R
+import com.ar.homenetflixtv.di.GlideRequestManager
+import com.ar.homenetflixtv.di.HomeNetflixVideoRepository
 import com.ar.homenetflixtv.model.Video
 import com.bumptech.glide.Glide
+import com.bumptech.glide.RequestManager
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class VideoCardView : BaseCardView {
 
     /**
      * refs: https://medium.com/androiddevelopers/customizing-leanback-for-android-tv-3f8d4a0b2839
      */
+
+    @GlideRequestManager
+    @Inject
+    lateinit var glideRequestManager: RequestManager
 
     private lateinit var title: TextView
     private lateinit var image: ImageView
@@ -48,9 +58,7 @@ class VideoCardView : BaseCardView {
 
     fun bind(video: Video) {
         title.text = video.title
-
-        Glide
-            .with(context)
+        glideRequestManager
             .load(video.imageUrl)
             .placeholder(ColorDrawable(Color.BLACK))
             .centerCrop()

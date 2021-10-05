@@ -7,6 +7,7 @@ object VideoMapper {
 
     private fun map(videoResponseDto: VideoResponseDto): Video {
         return Video.Builder(videoResponseDto.filename, videoResponseDto.relativePath)
+            .imageUri("https://iv1.lisimg.com/image/13684264/382full-big-buck-bunny.jpg") // just for testing
             .build()
     }
 
